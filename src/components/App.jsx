@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import "../App.css";
 import Editor from "./Editor";
 function App() {
-  const [html, setHtml] = useState("");
-  const [css, setCss] = useState("");
-  const [js, setJs] = useState("");
+  const [html, setHtml] = useLocalStorage("html", "<h1>Hello there!</h1>");
+  const [css, setCss] = useLocalStorage("css", "h1{color: white}");
+  const [js, setJs] = useLocalStorage(
+    "js",
+    'document.body.style.backgroundColor = "black"'
+  );
   const [srcDoc, setSrcDoc] = useState("");
   useEffect(() => {
     const timeout = setTimeout(() => {
